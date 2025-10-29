@@ -1,0 +1,87 @@
+.label {
+  display: flex;
+  flex-direction: column;
+  color: black;
+  position: relative;
+  color: #5a0b8f;
+  gap: 8px;
+}
+
+.inputField {
+  box-sizing: border-box;
+  width: 300px;
+  height: 36px;
+  border-radius: 8px;
+  border: solid 2px #b88cd6;
+  background-color: #c3bac9;
+  padding: 4px 42px 4px 8px;
+  color: #5a0b8f;
+}
+
+.inputField:placeholder-shown {
+  text-transform: capitalize;
+}
+
+.inputField:focus-visible {
+  outline: none;
+  box-shadow: 0 0 18px #ba85dd;
+}
+
+.buttonsWrapper {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 36px;
+  bottom: 0;
+  right: 0;
+  padding: 4px;
+}
+
+.visiblePasswdButton {
+  width: 24px;
+  height: 24px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  transition: background-color 0.3s ease-in;
+  cursor: pointer;
+}
+
+.visiblePasswdButton img {
+  width: 24px;
+  height: 24px;
+}
+
+.clearButton {
+  width: 24px;
+  height: 24px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  transition: background-color 0.3s ease-in;
+  cursor: pointer;
+}
+
+.clearButton:hover {
+  background-color: rgb(223, 107, 238);
+}
+
+.clearButton:active {
+  background-color: rgb(142, 119, 143);
+}
+
+.clearButton img {
+  width: 24px;
+  height: 24px;
+}
+
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear,
+input[type="password"]::-webkit-textfield-decoration-container,
+input[type="password"]::-webkit-clear-button,
+input[type="password"]::-webkit-inner-spin-button,
+input[type="password"]::-webkit-credentials-auto-fill-button {
+  display: none !important;
+  visibility: hidden;
+}
