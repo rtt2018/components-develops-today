@@ -12,8 +12,11 @@ export default function Home() {
         <Input type="text" clearable={false} />
         <Input type="password" clearable={true} />
         <Input type="password" clearable={false} />
-        <button type="button" onClick={() => window.dispatchEvent(new CustomEvent('show-butiful-toast', { detail: { text: 'Hello!', delay: 5000, enableCloseButton: true } }))}>Show toast</button>
-        <Toast text="Hello!" />
+        <button type="button" className={styles.showToast} onClick={() => window.dispatchEvent(new CustomEvent('show-butiful-toast', { detail: { text: 'Hello!', delay: 5000, enableCloseButton: true } }))}>Show toast delay: 5000 transition: slide enableCloseButton: true</button>
+        <button type="button" className={styles.showToast} onClick={() => window.dispatchEvent(new CustomEvent('show-butiful-toast', { detail: { text: 'Hello!', delay: 5000, enableCloseButton: false } }))}>Show toast delay: 5000 transition: slide enableCloseButton: false </button>
+        <button type="button" className={styles.showToast} onClick={() => window.dispatchEvent(new CustomEvent('show-butiful-toast', { detail: { text: 'Hello!', delay: 5000, enableCloseButton: true } }))}>Show toast delay: 5000 transition: slide enableCloseButton: true</button>
+        <button type="button" className={styles.showToast} onClick={() => window.dispatchEvent(new CustomEvent('show-butiful-toast', { detail: { text: 'Hello!', delay: 5000, enableCloseButton: true } }))}>Show toast delay: 5000 transition: slide enableCloseButton: true</button>
+        <Toast text="Hello!" primaryData="event" />
       </main>
     </div>
   );

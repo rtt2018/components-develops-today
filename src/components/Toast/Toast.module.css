@@ -2,21 +2,45 @@
   position: fixed;
   bottom: 32px;
   right: 32px;
-  width: 120px;
+  width: 400px;
   height: 64px;
   border-radius: 8px;
   border: solid 1px black;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  background-color: aqua;
+}
+
+.fade {
+  opacity: 0;
+}
+
+.slide {
+  transform: translateX(calc(100% + 120px));
 }
 
 .wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
+  display: flex;
+  height: 100%;
+  position: relative;
+}
+
+.messageText {
+  font-weight: 600;
+  font-size: 16px;
+  color: blueviolet;
 }
 
 .closeButton {
+  position: absolute;
   width: 32px;
   height: 32px;
+  right: 8px;
+  bottom: 0;
+  transform: translateY(-50%);
 }
 
 .closeIcon {

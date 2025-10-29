@@ -30,3 +30,8 @@
   background-color: rgba(0, 0, 0, 0.9);
   gap: 16px;
 }
+
+.showToast {
+  padding: 8px;
+  /* width: 120px; */
+}
