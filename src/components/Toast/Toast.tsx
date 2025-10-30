@@ -15,66 +15,91 @@ eventName = 'show-butiful-toast' - назва евенту, при якому б
 
 'use client';
 import { useEffect, useState } from 'react';
-import css from './Toast.module.css'
-import Image from 'next/image'
-import closeIcon from '@/img/clear.svg'
-
+import css from './Toast.module.css';
+import Image from 'next/image';
+import closeIcon from '@/img/clear.svg';
 
 type ToastTypes = {
-    text: string,
-    delay?: number | null,
-    transition?: 'fade' | 'slide' | '',
-    enableCloseButton?: boolean,
-    primaryData?: 'props' | 'event' | ''
-    eventName: string
-}
+  text: string;
+  delay?: number | null;
+  transition?: 'fade' | 'slide' | '';
+  enableCloseButton?: boolean;
+  primaryData?: 'props' | 'event' | '';
+  eventName: string;
+};
 
+export default function Toast({
+  text = 'Hello!',
+  delay,
+  transition = 'slide',
+  enableCloseButton = true,
+  primaryData = 'props',
+  eventName = 'show-butiful-toast',
+}: ToastTypes) {
+  const [hideToast, setHideToast] = useState(true);
+  const [propsData, setPropsData] = useState({
+    text,
+    delay,
+    transition,
+    enableCloseButton,
+    primaryData,
+    eventName,
+  });
+  const handleHideToast = () => {
+    setHideToast(true);
+  };
 
-export default function Toast({ text = "Hello!", delay, transition = 'slide', enableCloseButton = true, primaryData = 'props', eventName = 'show-butiful-toast' }: ToastTypes) {
-    const [hideToast, setHideToast] = useState(true)
-    const [propsData, setPropsData] = useState({
-        text, delay, transition, enableCloseButton, primaryData, eventName
-    })
-    const handleHideToast = () => {
-        setHideToast(true)
+  useEffect(() => {
+    const showToast = (evt: Event) => {
+      const customEvt = evt as CustomEvent<ToastTypes>;
+      if (primaryData === 'event') {
+        setPropsData((prevData) => {
+          return { ...prevData, ...customEvt.detail, eventName, primaryData };
+        });
+      }
+      setHideToast(false);
+    };
+    window.addEventListener(eventName, showToast);
+    return () => window.removeEventListener(eventName, showToast);
+  }, [text, delay, transition, enableCloseButton, primaryData, eventName]);
+
+  useEffect(() => {
+    if (typeof propsData.delay === 'number') {
+      const hideToast = setTimeout(() => {
+        handleHideToast();
+      }, propsData.delay);
+
+      return () => clearTimeout(hideToast);
     }
+  }, [propsData.delay, hideToast]);
 
-    useEffect(() => {
-        const showToast = (evt: Event) => {
-            const customEvt = evt as CustomEvent<ToastTypes>
-            if (primaryData === 'event') {
-                setPropsData((prevData) => { return { ...prevData, ...customEvt.detail, eventName, primaryData } })
-            }
-            setHideToast(false)
-        }
-        window.addEventListener(eventName, showToast)
-        return () => window.removeEventListener(eventName, showToast)
-    }, [text,
-        delay,
-        transition,
-        enableCloseButton,
-        primaryData,
-        eventName])
-
-    useEffect(() => {
-        if (typeof propsData.delay === "number") {
-            const hideToast = setTimeout(() => {
-                handleHideToast()
-            }, propsData.delay)
-
-            return () => clearTimeout(hideToast)
-        }
-    }, [propsData.delay, hideToast])
-
-
-    return (
-        <div className={`${css.toastContainer} ${hideToast ? (propsData.transition === 'fade' ? css.fade : css.slide) : ''}`}>
-            <div className={css.wrapper}>
-                <div className={css.messageText}>
-                    {propsData.text}
-                </div>
-            </div>
-            {enableCloseButton && <button type="button" aria-label='Close toast' className={css.closeButton} onClick={handleHideToast}><Image src={closeIcon} alt='Close toast icon' className={css.closeIcon} /></button>}
-        </ div>
-    )
+  return (
+    <div
+      className={`${css.toastContainer} ${
+        hideToast
+          ? propsData.transition === 'fade'
+            ? css.fade
+            : css.slide
+          : ''
+      }`}
+    >
+      <div className={css.wrapper}>
+        <div className={css.messageText}>{propsData.text}</div>
+      </div>
+      {enableCloseButton && (
+        <button
+          type="button"
+          aria-label="Close toast"
+          className={css.closeButton}
+          onClick={handleHideToast}
+        >
+          <Image
+            src={closeIcon}
+            alt="Close toast icon"
+            className={css.closeIcon}
+          />
+        </button>
+      )}
+    </div>
+  );
 }
