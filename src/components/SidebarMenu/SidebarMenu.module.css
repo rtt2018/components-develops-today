@@ -1,0 +1,102 @@
+.menuContainer {
+  position: absolute;
+  width: 240px;
+  height: 100vh;
+  border: solid 2px whitesmoke;
+  display: flex;
+  right: -240px;
+  /* transform: translateX(100%); */
+  transition: right 0.5s ease-in;
+}
+
+.menuButton {
+  position: fixed;
+  right: 32px;
+  top: 32px;
+}
+
+.openMenu {
+  right: 0;
+}
+
+.navMenu {
+  margin-top: 300px;
+  width: 100%;
+  padding: 16px;
+}
+
+.menuList {
+  list-style: none;
+  width: 100%;
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+}
+
+.menuItem {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow: hidden;
+}
+
+.ItemTitle {
+  display: flex;
+  border: solid 1 red;
+  border-radius: 8px;
+  height: 32px;
+  transition: color 0.3s ease-in-out;
+  align-items: center;
+  padding-inline: 4px;
+}
+
+.ItemTitle:hover {
+  color: red;
+}
+
+.subMenuList.hideSubmenu {
+  max-height: 200px;
+}
+
+.rotate {
+  transform: rotateZ(-180deg);
+}
+
+.subMenuList {
+  list-style: none;
+  margin-left: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 0;
+  transition: max-height 0.7s ease-in;
+}
+
+.subMenuItem {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.submenuButton {
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  border: solid 1px rgb(255, 0, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(223, 128, 128);
+  transition: transform 0.3s ease-in;
+}
+
+.arrow {
+  width: 16px;
+  height: 16px;
+  stroke: white;
+}

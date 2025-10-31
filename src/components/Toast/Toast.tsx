@@ -31,8 +31,8 @@ type ToastTypes = {
 export default function Toast({
   text = 'Hello!',
   delay,
-  transition = 'slide',
-  enableCloseButton = true,
+  transition = 'fade',
+  enableCloseButton = false,
   primaryData = 'props',
   eventName = 'show-butiful-toast',
 }: ToastTypes) {
@@ -45,11 +45,9 @@ export default function Toast({
     primaryData,
     eventName,
   });
-  const handleHideToast = () => {
-    setHideToast(true);
-  };
 
   useEffect(() => {
+    let renderDelay: number | undefined;
     const showToast = (evt: Event) => {
       const customEvt = evt as CustomEvent<ToastTypes>;
       if (primaryData === 'event') {
@@ -57,16 +55,21 @@ export default function Toast({
           return { ...prevData, ...customEvt.detail, eventName, primaryData };
         });
       }
-      setHideToast(false);
+      renderDelay = window.setTimeout(() => {
+        setHideToast(false);
+      }, 200);
     };
     window.addEventListener(eventName, showToast);
-    return () => window.removeEventListener(eventName, showToast);
-  }, [text, delay, transition, enableCloseButton, primaryData, eventName]);
+    return () => {
+      window.removeEventListener(eventName, showToast);
+      clearTimeout(renderDelay);
+    };
+  }, [primaryData, eventName]);
 
   useEffect(() => {
     if (typeof propsData.delay === 'number') {
       const hideToast = setTimeout(() => {
-        handleHideToast();
+        setHideToast(true);
       }, propsData.delay);
 
       return () => clearTimeout(hideToast);
@@ -86,12 +89,14 @@ export default function Toast({
       <div className={css.wrapper}>
         <div className={css.messageText}>{propsData.text}</div>
       </div>
-      {enableCloseButton && (
+      {propsData.enableCloseButton && (
         <button
           type="button"
+          onClick={() => {
+            setHideToast(true);
+          }}
           aria-label="Close toast"
           className={css.closeButton}
-          onClick={handleHideToast}
         >
           <Image
             src={closeIcon}

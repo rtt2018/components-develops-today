@@ -13,6 +13,7 @@
 
 .fade {
   opacity: 0;
+  pointer-events: none;
 }
 
 .slide {
@@ -42,6 +43,7 @@
   bottom: 0;
   transform: translateY(-50%);
   cursor: pointer;
+  z-index: 999;
 }
 
 .closeIcon {
