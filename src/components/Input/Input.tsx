@@ -1,37 +1,37 @@
-'use client';
-import { useId, useState } from 'react';
-import css from './Input.module.css';
-import Image from 'next/image';
-import clearIcon from '@/img/clear.svg';
-import openEye from '@/img/eye-open.svg';
-import closeEye from '@/img/eye-closed.svg';
+"use client";
+import { useId, useState } from "react";
+import css from "./Input.module.css";
+import Image from "next/image";
+import clearIcon from "@/img/clear.svg";
+import openEye from "@/img/eye-open.svg";
+import closeEye from "@/img/eye-closed.svg";
 
 type InputProps = {
-  type?: 'password' | 'text';
+  type?: "password" | "text";
   clearable?: boolean;
 };
 
 export default function Input({
-  type = 'text',
+  type = "text",
   clearable = false,
 }: InputProps) {
   const inputid = useId();
   const [visiblePasswd, setVisiblePasswd] = useState(false);
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
 
   const handleVisiblePwdClick = () => {
     setVisiblePasswd((prew) => !prew);
   };
 
   const handleClearClick = () => {
-    setInputValue('');
+    setInputValue("");
   };
 
   return (
     <label htmlFor="customInput" className={css.label}>
       Please, enter {type}
       <input
-        type={type === 'text' ? type : visiblePasswd ? 'text' : type}
+        type={type === "text" ? type : visiblePasswd ? "text" : type}
         name="customInput"
         id={inputid}
         className={css.inputField}
@@ -53,7 +53,7 @@ export default function Input({
             />
           </button>
         )}
-        {type === 'password' && (
+        {type === "password" && (
           <button
             type="button"
             className={css.visiblePasswdButton}

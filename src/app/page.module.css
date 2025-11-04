@@ -32,6 +32,9 @@
 
 .showToast {
   padding: 8px;
+  border: solid 1px white;
+  background-color: gray;
+  border-radius: 8px;
 }
 
 .wrapper {

@@ -1,5 +1,5 @@
 .menuContainer {
-  position: absolute;
+  position: fixed;
   width: 240px;
   height: 100vh;
   border: solid 2px whitesmoke;
