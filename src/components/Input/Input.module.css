@@ -1,4 +1,5 @@
 .label {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   display: flex;
   flex-direction: column;
   color: black;
@@ -15,7 +16,7 @@
   border-radius: 8px;
   border: solid 2px #b88cd6;
   background-color: #c3bac9;
-  padding: 4px 42px 4px 8px;
+  padding: 4px 64px 4px 8px;
   color: #5a0b8f;
 }
 
@@ -33,14 +34,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* height: 36px; */
+  gap: 4px;
+  height: 36px;
   bottom: 0;
-  right: 0;
+  right: 4px;
   padding: 4px;
   box-sizing: border-box;
 }
 
 .visiblePasswdButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 24px;
   height: 24px;
   background-color: transparent;
@@ -79,12 +84,12 @@
   height: 24px;
 }
 
-input[type="password"]::-ms-reveal,
-input[type="password"]::-ms-clear,
-input[type="password"]::-webkit-textfield-decoration-container,
-input[type="password"]::-webkit-clear-button,
-input[type="password"]::-webkit-inner-spin-button,
-input[type="password"]::-webkit-credentials-auto-fill-button {
+input[type='password']::-ms-reveal,
+input[type='password']::-ms-clear,
+input[type='password']::-webkit-textfield-decoration-container,
+input[type='password']::-webkit-clear-button,
+input[type='password']::-webkit-inner-spin-button,
+input[type='password']::-webkit-credentials-auto-fill-button {
   display: none !important;
   visibility: hidden;
 }
