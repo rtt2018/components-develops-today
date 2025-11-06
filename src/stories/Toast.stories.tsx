@@ -35,9 +35,9 @@ type Story = StoryObj<typeof meta>;
 
 export const DefaultProps: Story = {
   args: {
-    text: 'Hello, world!',
-    delay: 5000,
-    transition: 'fade',
+    text: "Hello, world",
+    delay: 1000,
+    transition: "slide",
     enableCloseButton: true,
     primaryData: 'props',
     eventName: 'show-butiful-toast',
@@ -105,7 +105,7 @@ export const SimpleCloseToast: Story = {
   ),
 };
 
-export const SimplePassword: Story = {
+export const SimpleSlideClose: Story = {
   args: {
     text: 'Hello!',
     delay: 2000,
@@ -129,22 +129,31 @@ export const SimplePassword: Story = {
   ),
 };
 
-export const PasswordClearable: Story = {
+export const SimpleSlide: Story = {
   args: {
     text: 'Hello!',
     delay: 2000,
     transition: 'slide',
-    enableCloseButton: true,
-    primaryData: 'props',
+    enableCloseButton: false,
+    primaryData: 'event',
     eventName: 'show-butiful-toast1',
   },
   render: (args) => (
     <div>
       <button
         className={styles.showToastButton}
-        onClick={() => {
-          window.dispatchEvent(new CustomEvent(args.eventName));
-        }}
+        onClick={() =>
+          window.dispatchEvent(
+            new CustomEvent('show-butiful-toast1', {
+              detail: {
+                text: 'Hello!',
+                delay: 2000,
+                enableCloseButton: false,
+                transition: 'slide',
+              },
+            }),
+          )
+        }
       >
         Show Toast
       </button>

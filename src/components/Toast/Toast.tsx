@@ -22,9 +22,9 @@ import closeIcon from '@/img/clear.svg';
 type ToastTypes = {
   text: string;
   delay?: number | null;
-  transition?: 'fade' | 'slide' | '';
+  transition?: 'fade' | 'slide';
   enableCloseButton?: boolean;
-  primaryData?: 'props' | 'event' | '';
+  primaryData?: 'props' | 'event';
   eventName: string;
 };
 
